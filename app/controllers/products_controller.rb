@@ -1,30 +1,30 @@
 class ProductsController < ApplicationController
-  def index 
-    @products = Product.all 
-  end 
+  def index
+    @products = Product.all
+  end
 
-  def inventory 
+  def inventory
     product = Product.find(params[:id])
-    render plain: product.inventory > 0 ? true : false 
-  end 
+    render plain: product.inventory > 0 ? true : false
+  end
 
-  def description 
+  def description
     product = Product.find(params[:id])
     render plain: product.description
-  end 
+  end
 
-  def new 
-    @product = Product.new 
-  end 
+  def new
+    @product = Product.new
+  end
 
-  def create 
+  def create
     Product.create(product_params)
-    redirect_to products_path 
-  end 
+    redirect_to products_path
+  end
 
-  private 
+  private
 
   def product_params
     params.require(:product).permit(:name, :description, :inventory, :price)
-  end 
+  end
 end
